@@ -63,6 +63,11 @@ do {
                     alert("Display format: \"Name movie - Year of release -The person who added data\"\n" + tableFilm.field.join ("\n"))
                     break
                 }
+                //просмотр количества внесенных фильмов
+                 case "movie numbers": {
+                    alert("There are "+ tableFilm.field.length +" films in the database")
+                    break
+                }
                 default:{
                      alert(movie + " no found.\nTo view the available commands, enter 'help'")
                      break
