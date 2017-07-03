@@ -19,6 +19,34 @@ if (start == true) {
     }
 }
 
+/**функция для ввода нового фильма */
+const addMovie = function (database) {
+    //ввод имени фильма и запись в 'database.movieName'
+    var filmName = prompt("Please, enter the name of the movie:")
+    //проверка на пустое поле
+    for (var i =0; filmName == ""; i++){
+        filmName = prompt("You can not save an empty field.\nPlease, enter the name of the movie:")
+    }
+    database.movieName.push(filmName)
+
+    //ввод года фильма и запись в 'database.movieYearOfRelease'
+    var yearOfRelease = prompt("Please enter the year of release of the movie \"" + filmName +"\"")
+    yearOfRelease = +yearOfRelease
+    //проверка на валидность заполнения года
+    for (var i =0; yearOfRelease.length !== 4 && yearOfRelease < 1881; i++) {
+         yearOfRelease = prompt("The field must be 4-digit. The minimum year '1881'")
+         yearOfRelease = +yearOfRelease
+    }
+    database.movieYearOfRelease.push(yearOfRelease)
+
+    //запись в 'database.movieCreator' пользователя
+    database.movieCreator.push(user)
+
+    //запись в 'tableFilm.field' данных о новом фильме, необходимо для вывода сохраненных фильмов
+    tableFilm.field.push(filmName + "-" + yearOfRelease + "-" + user)
+}
+
+
 do {
     if (start == false) break  
        const movie = prompt("Hallo "+ user)
