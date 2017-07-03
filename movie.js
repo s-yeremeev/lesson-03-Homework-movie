@@ -46,6 +46,49 @@ const addMovie = function (database) {
     tableFilm.field.push(filmName + "-" + yearOfRelease + "-" + user)
 }
 
+/**Функция для поиска фильмов по году */
+ const filterYear = function (database) {
+    var filterY = prompt("Enter a year to search for:")
+    filterY = +filterY
+    //проверка на валидность заполнения года
+    for (var i =0; filterY.length !== 4 && filterY < 1881; i++) {
+        filterY = prompt("The field must be 4-digit. The minimum year '1881'")
+        filterY = +filterY
+    }
+    let result = { "find": []}
+    for (var i = 0; i < database.movieYearOfRelease.length; i++) {      
+        if(database.movieYearOfRelease[i] == filterY) {
+            result.find.push(database.movieName[i] + "-" + database.movieYearOfRelease[i] + "-" + database.movieCreator[i])
+         }        
+    }
+    //вывод в aler фильма,года и пользователя. Каждый новый фильм с новой строки
+    if(result.find.length == 0){
+        alert("There are no movies on this condition.")
+    } else {
+        alert("List of available movies\n" + result.find.join ("\n"))
+    }
+ }
+
+/**Функция для поиска фильмов по названию */
+ const filterName = function (database) {
+    var filterN = prompt("Enter a name to search for:")
+    //проверка на пустое поле
+    for (var i =0; filterN == ""; i++){
+        filterN = prompt("You can not save an empty field.\nnter a name to search for:")
+    }
+    let result = { "find": []}
+    for (var i = 0; i < database.movieName.length; i++) {      
+        if(database.movieName[i] == filterN) {
+            result.find.push(database.movieName[i] + "-" + database.movieYearOfRelease[i] + "-" + database.movieCreator[i])
+         }        
+    }
+     //вывод в aler фильма,года и пользователя. Каждый новый фильм с новой строки
+    if(result.find.length == 0){
+        alert("There are no movies on this condition.")
+    } else {
+        alert("List of available movies\n" + result.find.join ("\n"))
+    }
+ }
 
 do {
     if (start == false) break  
@@ -66,6 +109,16 @@ do {
                 //просмотр количества внесенных фильмов
                  case "movie numbers": {
                     alert("There are "+ tableFilm.field.length +" films in the database")
+                    break
+                }
+                //поиск фильма по году
+                 case "filter year": {
+                   filterYear(database)
+                    break
+                }
+                //поиск фильма по названию
+                case "filter name": {
+                   filterName(database)
                     break
                 }
                 default:{
