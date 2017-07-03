@@ -58,6 +58,11 @@ do {
                     addMovie(database)
                     break
                 }
+                //просмотр всех фильмов
+                case "movie view": {
+                    alert("Display format: \"Name movie - Year of release -The person who added data\"\n" + tableFilm.field.join ("\n"))
+                    break
+                }
                 default:{
                      alert(movie + " no found.\nTo view the available commands, enter 'help'")
                      break
