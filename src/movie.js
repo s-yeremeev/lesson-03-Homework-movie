@@ -1,15 +1,13 @@
-const database = {
-    "movieName": [],
-    "movieYearOfRelease": []
-}
+const database =[]
+let j = 0 //переменная используется для записи объекта в массив
 
 /**Предложение начала работы */
 let start = confirm("Do you want to get started with the movie database?") 
 
 /**Ввод имени пользователя, предлогается если 'start' = true*/
 if (start == true) {
-    var user = prompt("Please, enter your name")
-    for (var i =0; user == ""; i++){
+    var user = prompt("Please, enter your name")    
+    for (let i =0; !user; i++){
         user = prompt("You can not save an empty field.\nPlease, enter your name")
     }
 }
@@ -22,27 +20,27 @@ do {
             switch(movie){
                 //добавление нового фильма   
                 case "movie add":{
-                    addMovie(database)
+                    addMovie()
                     break
                 }
                 //просмотр всех фильмов
                 case "movie view": {
-                    movieView(database)
+                   visibleResult(movieView())
                     break
                 }
                 //просмотр количества внесенных фильмов
                  case "movie numbers": {
-                    alert("There are "+ database.movieYearOfRelease.length +" films in the database")
+                    alert("There are "+ j +" films in the database")
                     break
                 }
                 //поиск фильма по году
                  case "filter year": {
-                   filterYear(database)
+                  visibleResult(filterYear())
                     break
                 }
                 //поиск фильма по названию
                 case "filter name": {
-                   filterName(database)
+                   visibleResult(filterName())
                     break
                 }
                 //вывод помощника по доступных операциям
