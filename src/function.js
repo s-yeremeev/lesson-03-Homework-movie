@@ -1,16 +1,16 @@
 /**функция для ввода нового фильма */
 function addMovie() {
     //ввод имени фильма 
-    let filmName = prompt("Please, enter the name of the movie:")
+    let filmName = prompt(MOVIE_ADD_NAME)
     //проверка на пустое поле
     for (let i = 0; !filmName; i++){
-        filmName = prompt("You can not save an empty field.\nPlease, enter the name of the movie:")
+        filmName = prompt(MESSAGE_EMPTY_FIELD + "\n" + MOVIE_ADD_NAME)
     }
     //ввод года фильма 
-    let yearOfRelease = +prompt("Please enter the year of release of the movie \"" + filmName +"\"")
+    let yearOfRelease = +prompt(MOVIE_ADD_YEAR)
     //проверка на валидность заполнения года
     for (let i = 0; yearOfRelease.length !== 4 &&  yearOfRelease < 1881 || yearOfRelease > 2017; i++) {
-         yearOfRelease = +prompt("The field must be 4-digit.\nThe minimum year '1881'\nYou can not specify the future")
+         yearOfRelease = +prompt(MOVIE_VALID_YEAR)
     }
     //запись нового объекта в массив
     database[j] = {
@@ -22,10 +22,10 @@ function addMovie() {
 
 /**Функция для поиска фильмов по году */
  function filterYear() {
-    let filterY = +prompt("Enter a year to search for:")
+    let filterY = +prompt(MOVIE_ADD_YEAR)
     //проверка на валидность заполнения года
     for (let i =0; filterY.length !== 4 && filterY < 1881 || filterY > 2017; i++) {
-        filterY = +prompt("The field must be 4-digit.\nThe minimum year '1881'\nYou can not specify the future")
+        filterY = +prompt(MOVIE_VALID_YEAR)
     }
     let result = { "find": []}
     for (let i = 0; i < j; i++) {      
@@ -38,10 +38,10 @@ function addMovie() {
 
 /**Функция для поиска фильмов по названию */
  function filterName() {
-    let filterN = prompt("Enter a name to search for:")
+    let filterN = prompt(MOVIE_ADD_NAME)
     //проверка на пустое поле
     for (let i =0; !filterN; i++){
-        filterN = prompt("You can not save an empty field.\nnter a name to search for:")
+        filterN = prompt(MESSAGE_EMPTY_FIELD + "\n" + MOVIE_ADD_NAME)
     }
     let result = { "find": []}
     for (let i = 0; i < j; i++) {      
@@ -63,8 +63,8 @@ function addMovie() {
 function visibleResult(result) {    
  //вывод в aler фильма,года и пользователя. Каждый новый фильм с новой строки
     if(result.find.length == 0){
-        alert("There are no movies on this condition.")
+        alert(NO_FOUND_TEXT)
     } else {
-        alert("List of available movies\n" + result.find.join ("\n"))
+        alert(result.find.join ("\n"))
     }
 }
